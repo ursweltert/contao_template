@@ -9,4 +9,4 @@
 	url = https://github.com/TechnoGate/contao_assets.git
 [submodule "contao/core/system/modules/template-override"]
 	path = contao/core/system/modules/template-override
-	url = https://github.com/qzminski/contao-template-override.git
+	url = https://github.com/codefog/contao-template_override.git
