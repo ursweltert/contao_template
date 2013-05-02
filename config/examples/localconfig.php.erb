@@ -34,9 +34,9 @@ $GLOBALS['TL_CONFIG']['licenseAccepted']      = true;
 $GLOBALS['TL_CONFIG']['installPassword']      = '<%= config.contao.install_password %>';
 $GLOBALS['TL_CONFIG']['installCount']         = 0;
 $GLOBALS['TL_CONFIG']['encryptionKey']        = '<%= config.contao.encryption_key %>';
-<% if config.contao.global.mysql.present? -%>
+<% if config.contao.global.mysql.present? %>
 $GLOBALS['TL_CONFIG']['dbDriver']             = 'MySQL';
-<% end -%>
+<% end %>
 $GLOBALS['TL_CONFIG']['dbHost']               = '<%= config.contao.global.mysql.host || 'localhost' %>';
 $GLOBALS['TL_CONFIG']['dbPort']               = <%= config.contao.global.mysql.port || 3306 %>;
 $GLOBALS['TL_CONFIG']['dbUser']               = '<%= config.contao.global.mysql.user %>';
@@ -45,27 +45,47 @@ $GLOBALS['TL_CONFIG']['dbDatabase']           = '<%= config.contao.global.mysql.
 $GLOBALS['TL_CONFIG']['dbPconnect']           = false;
 $GLOBALS['TL_CONFIG']['dbCharset']            = 'UTF8';
 $GLOBALS['TL_CONFIG']['adminEmail']           = '<%= config.contao.admin_email %>';
-$GLOBALS['TL_CONFIG']['cron_weekly']          = 201126;
+
+$GLOBALS['TL_CONFIG']['disableCron'] = true;
+// $GLOBALS['TL_CONFIG']['cron_weekly']          = 201126;
+// $GLOBALS['TL_CONFIG']['cron_daily']           = 20110701;
 $GLOBALS['TL_CONFIG']['latestVersion']        = '2.11.4';
-$GLOBALS['TL_CONFIG']['cron_daily']           = 20110701;
 $GLOBALS['TL_CONFIG']['timeZone']             = '<%= config.contao.time_zone %>';
-$GLOBALS['TL_CONFIG']['rewriteURL']           = true;
+
+$GLOBALS['TL_CONFIG']['templateFiles'] 		    = 'html5';
+$GLOBALS['TL_CONFIG']['inactiveModules'] = 'a:2:{i:0;s:7:"favicon";i:1;s:11:"parentslist";}';
+
 $GLOBALS['TL_CONFIG']['allowedTags']          = '<a><abbr><acronym><address><area><article><aside><b><big><blockquote><br><base><bdo><button><caption><cite><code><col><colgroup><dd><del><div><dfn><dl><dt><em><figure><figcaption><form><fieldset><footer><header><hr><h1><h2><h3><h4><h5><h6><i><iframe><img><input><ins><label><legend><li><link><map><nav><object><ol><optgroup><option><p><pre><param><q><section><select><small><span><strong><sub><sup><style><table><tbody><td><textarea><tfoot><th><thead><tr><tt><u><ul>';
-<% if config.contao.smtp.enabled -%>
+<% if config.contao.smtp.enabled %>
 $GLOBALS['TL_CONFIG']['useSMTP']              = true;
 $GLOBALS['TL_CONFIG']['smtpHost']             = '<%= config.contao.smtp.host %>';
 $GLOBALS['TL_CONFIG']['smtpUser']             = '<%= config.contao.smtp.user %>';
 $GLOBALS['TL_CONFIG']['smtpPass']             = '<%= config.contao.smtp.pass %>';
-<% end -%>
-<% if config.contao.smtp.ssl -%>
+<% end %>
+<% if config.contao.smtp.ssl %>
 $GLOBALS['TL_CONFIG']['smtpEnc']              = 'ssl';
 $GLOBALS['TL_CONFIG']['smtpPort']             = <%= config.contao.smtp.port || 465 %>;
-<% end -%>
-<% unless Rails.env.production? -%>
+<% end %>
+<% unless Rails.env.production? %>
 $GLOBALS['TL_CONFIG']['cacheMode']            = 'none';
 $GLOBALS['TL_CONFIG']['displayErrors']        = true;
 $GLOBALS['TL_CONFIG']['disableRefererCheck']  = true;
-<% end -%>
+$GLOBALS['TL_CONFIG']['rewriteURL']           = false;
+$GLOBALS['TL_CONFIG']['disableAlias']         = true;
+<% end %>
 ### INSTALL SCRIPT STOP ###
+
+$GLOBALS['TL_CONFIG']['websiteTitle'] = 'april & tochter Druckerei oHG';
+$GLOBALS['TL_CONFIG']['maxFileSize'] = 209715200;
+$GLOBALS['TL_CONFIG']['enableSearch'] = false;
+$GLOBALS['TL_CONFIG']['defaultUser'] = 3;
+$GLOBALS['TL_CONFIG']['defaultGroup'] = 1;
+
+<% if Rails.env.production? %>
+$GLOBALS['TL_CONFIG']['minifyMarkup'] = true;
+$GLOBALS['TL_CONFIG']['gzipScripts'] = true;
+$GLOBALS['TL_CONFIG']['rewriteURL']           = true;
+$GLOBALS['TL_CONFIG']['disableAlias']         = false;
+<% end %>
 
 ?>
