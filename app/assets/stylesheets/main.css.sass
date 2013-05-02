@@ -1,0 +1,79 @@
+/*
+ *= require_self
+ */
+
+// Reset all elements
+// @import "blueprint/reset"
+
+// Require definitions
+@import "definitions/all"
+@import "recipes/shadow/drop"
+
+// Schrift
+$blueprint-font-family: "Helvetica Neue", Arial, Helvetica, sans-serif
+$blueprint-font-size: 14px
+$blueprint-font-color: $grey_dark
+@import "blueprint/typography"
+
+// Grid
+@import "susy"
+$total-columns: 7
+$column-width: 2em
+$gutter-width: 0.5em
+$grid-padding: 0
+$container-style: magic
+
+$tablet: 14
+$desktop: 24
+
+// eigene Imports
+@import "layouts"
+
+// eigene Variablen
+$logo-height: 32px
+$contao_assets_url: "<project-url>/tl_files/<project-name>/theme/"
+
+.clear, .clr, .clearfix
+  +clearfix
+  width: 0px
+  height: 0px
+  clear: both
+
+// Globale Mixins laden
++blueprint-typography
+
+// Globale Funktionen
+#{headers(all)}
+  font-weight: 700
+
+h2
+  margin-bottom: 0
+
+body
+  padding-left: $gutter-width
+  padding-right: $gutter-width
+  #wrapper
+    padding: 0
+    margin-top: 2em
+    margin-bottom: 5em
+
+    +container
+    $container-width: 600px
+    +set-container-width
+    // +susy-grid-background
+    +box-shadow(rgba(0, 0, 0, 0.65) 0px 1px 10px)
+    +at-breakpoint($tablet)
+      $container-width: 800px
+      +container
+      +set-container-width
+      // +susy-grid-background
+    +at-breakpoint($desktop)
+      $container-width: 1024px
+      +container
+      +set-container-width
+      // +susy-grid-background
+
+/////////////
+// Layouts //
+/////////////
+
