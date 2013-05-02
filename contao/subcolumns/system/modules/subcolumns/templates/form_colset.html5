@@ -1,8 +1,0 @@
-
-<?php if (!$this->tableless): ?>
-  </table>
-	<?php echo $this->generate(); ?>
-  <table>
-<?php else: ?>
-	<?php echo $this->generate(); ?>
-<?php endif; ?>
