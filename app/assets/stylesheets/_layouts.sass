@@ -1,0 +1,31 @@
+//////////////////////////////////
+// Beispiele für Layout-Module, //
+// die über @extend eingebunden //
+// werden können                //
+//////////////////////////////////
+
+
+// %hauptinhalt-schmal
+//   padding-left: $gutter-width
+//   padding-right: $gutter-width
+//   +at-breakpoint($tablet)
+//     +span-columns(7, $tablet)
+//   +at-breakpoint($desktop)
+//     +pre(1)
+//     +span-columns(13, $desktop)
+
+// %seitenleiste
+//   +at-breakpoint($tablet)
+//     +pre(0)
+//     +span-columns(6, $tablet)
+//     +omega
+//     +post(1)
+//   +at-breakpoint($desktop)
+//     +pre(0)
+//     +span-columns(8, $desktop)
+//     +omega
+//     +post(1)
+//   p, ul, ol, table, dd, dl, img, figure
+//     padding-left: $gutter-width * 2
+//     padding-right: $gutter-width * 2
+//     margin-bottom: $gutter-width
