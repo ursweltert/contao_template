@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -16,10 +16,20 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   gem 'oily_png', platforms: :mri
-  gem 'compass-rails'
+
+  gem 'compass', '>= 0.12.2'      # hinzugefügt
+  gem 'compass-rails', '>= 1.0.3' # war vorher ohne Versionsnummer
+  gem 'compass-recipes'
+  gem 'susy'
+
+  gem "less-rails"
+  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+  gem 'jasny-bootstrap-extension-rails', '0.0.2',
+    :path => 'vendor/jasny-bootstrap-extension-rails/'
 end
 
 gem 'jquery-rails'
+gem 'jquery-migrate-rails'
 
 group :development do
   gem 'foreman'
@@ -29,6 +39,7 @@ group :development do
 
   gem 'contao'
   gem 'capistrano-contao'
+  gem 'capistrano-exts', '>=1.13.2', :require => false
 end
 
 group :development, :test do
