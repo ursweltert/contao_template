@@ -7,21 +7,25 @@
 
 // Require definitions
 @import "definitions/all"
-@import "recipes/shadow/drop"
+@import "compass/css3"
+@import "compass/css3/transition"
+@import "recipes/icon-font"
 
 // Schrift
-$blueprint-font-family: "Helvetica Neue", Arial, Helvetica, sans-serif
+$blueprint-font-family: "Roboto Condensed", "Helvetica Neue", Arial, Helvetica, sans-serif
+$headings-font-family: "Fjalla One", "Helvetica Neue", Arial, Helvetica, sans-serif
 $blueprint-font-size: 14px
-$blueprint-font-color: $grey_dark
+$font-color: $schwarz
 @import "blueprint/typography"
 
 // Grid
 @import "susy"
 $total-columns: 7
 $column-width: 2em
-$gutter-width: 0.5em
+$gutter-width: 1em
 $grid-padding: 0
 $container-style: magic
+$grid-background-column-color: rgba(0,0,0,0.05)
 
 $tablet: 14
 $desktop: 24
@@ -31,7 +35,7 @@ $desktop: 24
 
 // eigene Variablen
 $logo-height: 32px
-$contao_assets_url: "<project-url>/tl_files/<project-name>/theme/"
+$contao_assets_url: "/tl_files/mbuw/theme/"
 
 .clear, .clr, .clearfix
   +clearfix
@@ -42,38 +46,464 @@ $contao_assets_url: "<project-url>/tl_files/<project-name>/theme/"
 // Globale Mixins laden
 +blueprint-typography
 
-// Globale Funktionen
-#{headers(all)}
-  font-weight: 700
+table
+  margin-bottom: 1.4em
+  width: 100%
+th
+  font-weight: bold
+thead th
+  background: $blueprint-table-header-color
+th, td, caption
+  padding: 4px 10px 4px 5px
+table.striped tr:nth-child(even) td,
+table tr.even td
+  background: none
+  // background: $blueprint-table-stripe-color
+tfoot
+  font-style: italic
 
-h2
-  margin-bottom: 0
+.checkliste table
+  td
+    &.col_last
+      font-family: "Web Symbols"
+  td[data-content="ja"]
+    color: darken(lime, 5%)
+  td[data-content="nein"]
+    color: darken(red, 5%)
+
+hr
+  border: none
+  border-bottom: 1px solid #333
+
+form
+  input
+    max-width: 90%
+  textarea
+    width: 96%
+
+
+
+// Globale Funktionen
+#{headings(1, 3)}
+  font-family: $headings-font-family
+  font-weight: 400
+  line-height: 1.2em
+  margin-top: 1.2em
+  &:nth-child(1)
+    margin-top: 0
+#{headings(1, 1)}
+  font-size: 3em
+  margin-bottom: 0.3em
+#{headings(2, 2)}
+  font-size: 2em
+  margin-bottom: 0.3em
+#{headings(3, 3)}
+  font-size: 1.2em
+  margin-bottom: 0.2em
+
+p,
+figure
+  margin-bottom: 0.6em
+// figure
+//   text-align: center
+a
+  +transition-property(color)
+  +transition-duration(0.25s)
+  +transition-timing-function(linear)
+
+video
+  width: 100%
+  height: 100%
+.mejs-container
+  // max-width: 100%!important
+  // max-height: 100%!important
+  margin-bottom: 2em
 
 body
-  padding-left: $gutter-width
-  padding-right: $gutter-width
+  background-color: $anthrazit
+  margin: 0
+
+  // Schriften
+  font-weight: 400
+  // letter-spacing: 0.01em
+
+  -webkit-font-smoothing: antialiased
+  -moz-font-smoothing: antialiased
+  -o-font-smoothing: antialiased
+  font-smoothing: antialiased
+  font-smooth: auto
+
   #wrapper
     padding: 0
     margin-top: 2em
     margin-bottom: 5em
 
-    +container
-    $container-width: 600px
-    +set-container-width
-    // +susy-grid-background
-    +box-shadow(rgba(0, 0, 0, 0.65) 0px 1px 10px)
-    +at-breakpoint($tablet)
-      $container-width: 800px
+    header, #container, footer
+      $grid-padding: $gutter-width
       +container
+      $container-width: 600px
       +set-container-width
       // +susy-grid-background
-    +at-breakpoint($desktop)
-      $container-width: 1024px
-      +container
-      +set-container-width
-      // +susy-grid-background
+      // +box-shadow(rgba(0, 0, 0, 0.65) 0px 1px 10px)
+      +at-breakpoint($tablet)
+        $container-width: 1000px
+        +container
+        +set-container-width
+        // +susy-grid-background
+      +at-breakpoint($desktop)
+        $container-width: 1200px
+        +container
+        +set-container-width
+        // +susy-grid-background
+
+      background-color: $weiss
+
+    header
+      background-color: $gelb
+      #header-grafik-responsive
+        margin: 3em 0 0 0
+        display: none
+        +at-breakpoint($tablet, $desktop)
+          display: none
+      #header-logo, #header-logo-mobile
+        text-align: right
+        margin: 0
+        a
+          display: block
+          margin: 2em 3em 0 0
+      #header-logo
+        +span-columns(6, $total-columns)
+        +post(1)
+        +omega
+        display: none
+        +at-breakpoint($tablet, $desktop)
+          display: block
+        +at-breakpoint($tablet)
+          +span-columns(7, $tablet)
+          +post(1)
+          +omega
+        +at-breakpoint($desktop)
+          +span-columns(16, $desktop)
+          +post(1)
+          +omega
+      #header-logo-mobile
+        +span-columns(3, $total-columns)
+        +omega
+        display: block
+        +at-breakpoint($tablet, $desktop)
+          display: none
+
+  &.home
+    #wrapper
+      header
+        #header-grafik-responsive
+          +span-columns($total-columns)
+          display: block
+          +at-breakpoint($tablet, $desktop)
+            display: block
+          +at-breakpoint($tablet)
+            +pre(0)
+            +span-columns(5, $tablet)
+            +post(0)
+          +at-breakpoint($desktop)
+            +pre(2)
+            +span-columns(8, $desktop)
+            +post(1)
+        #header-logo
+          +span-columns(4, $total-columns)
+          +post(1)
+          +omega
+          display: none
+          +at-breakpoint($tablet, $desktop)
+            display: none
+          +at-breakpoint($tablet)
+            +span-columns(8, $tablet)
+            +post(1)
+            +omega
+          +at-breakpoint($desktop)
+            +span-columns(18, $desktop)
+            +post(1)
+            +omega
+        #header-logo-mobile
+          +span-columns(3, $total-columns)
+          +omega
+          display: block
+          +at-breakpoint($tablet, $desktop)
+            display: block
+          +at-breakpoint($tablet)
+            +span-columns(4, $tablet)
+            +post(1)
+            +omega
+          +at-breakpoint($desktop)
+            +span-columns(6, $desktop)
+            +post(1)
+            +omega
+
+  #wrapper
+    header
+      #hauptmenue
+        margin-top: 2em
+        margin-left: -$gutter-width
+        margin-right: 0
+        +span-columns(4, $total-columns)
+
+        +at-breakpoint($tablet)
+          +span-columns(5, $tablet)
+        +at-breakpoint($desktop)
+          +span-columns(7, $desktop)
+        ul
+          border-left: 0.4em solid $blau
+          padding: 0.25em 0 0.25em 0
+          margin: 0
+          li
+            list-style-type: none
+            display: block
+            a, span
+              // white-space: pre-wrap
+              white-space: nowrap
+              font-family: $headings-font-family
+              font-size: 18px
+              letter-spacing: 1px
+              text-decoration: none
+              text-transform: uppercase
+              padding: 0.2em 0.4em 0.2em 0
+              color: darken($gelb, 2%)
+              background-color: $blau
+              &.first
+                padding-top: 0.6em
+              &.last
+                padding-bottom: 0.55em
+              &.first.last
+                padding-top: 0.45em
+                padding-bottom: 0.4em
+            a:hover, span.active, a.trail
+              color: $weiss
+
+    #container
+      #main
+        padding-top: 2em
+        #untermenue
+          margin-top: -2em
+          margin-left: -$gutter-width
+          @extend %beschnitt-links-seite
+          margin-bottom: 2em
+          ul
+            border-left: 0.4em solid $schwarz
+            padding: 0.28em 0 0.28em 0
+            margin: 0
+            li
+              list-style-type: none
+              display: block
+              a, span
+                position: relative
+                z-index: 1
+                font-family: $headings-font-family
+                white-space: pre-wrap
+                // white-space: nowrap
+                letter-spacing: 1px
+                text-decoration: none
+                text-transform: uppercase
+                padding: 0.3em 0.4em 0.3em 0
+                color: lighten($gelb, 2%)
+                background-color: $schwarz
+                line-height: 1.6em
+                &.first
+                  padding-top: 0.4em
+                &.last
+                  padding-bottom: 0.43em
+                &.first.last
+                  padding-top: 0.45em
+                  padding-bottom: 0.4em
+              a:hover, span.active, a.trail
+                color: $weiss
+          &.block
+            overflow: visible
+    footer#footer
+      background-color: $gelb
+      #menue-fusszeile
+        margin-bottom: 2em
+        margin-left: -$gutter-width
+        +span-columns($total-columns)
+
+        +at-breakpoint($tablet)
+          +span-columns(4, $tablet)
+        +at-breakpoint($desktop)
+          +span-columns(5, $desktop)
+        ul
+          border-left: 0.4em solid $blau
+          padding-left: 0
+          margin: 0
+          li
+            list-style-type: none
+            a, span
+              // white-space: pre-wrap
+              white-space: nowrap
+              font-family: $headings-font-family
+              font-size: 18px
+              letter-spacing: 1px
+              text-decoration: none
+              text-transform: uppercase
+              padding: 0.2em 0.4em 0.2em 0
+              color: darken($gelb, 2%)
+              background-color: $blau
+            a:hover, span.active
+              color: $weiss
 
 /////////////
 // Layouts //
 /////////////
+body
+  #container
+    #main
+      .mod_article
+        min-height: 30em
+        .ce_text,
+        .ce_form,
+        iframe
+          margin-bottom: 1em
+          // & > div,
+          // & > figure
+          //   padding-left: $gutter-width
+          //   padding-right: $gutter-width
+        .ce_text
+          figure
+            margin-left: 0
+            margin-right: 0
+  &.eine-spalte
+    #container
+      #main
+        .mod_article
+          .ce_text,
+          .ce_form,
+          .ce_gallery,
+          .ce_table,
+          .ce_mediaelement,
+          iframe
+            @extend %spalte-1-1
+
+  &.zwei-spalten
+    #container
+      #main
+        .mod_article
+          .ce_text,
+          .ce_form,
+          .ce_table,
+          .ce_gallery,
+          .ce_mediaelement
+            +at-breakpoint($tablet)
+              +span-columns(7, $tablet)
+              +nth-omega(2n)
+              +isolate-grid(7)
+            +at-breakpoint($desktop)
+              +span-columns(12, $desktop)
+              +nth-omega(2n)
+              +isolate-grid(12)
+          .ce_gallery
+            +at-breakpoint($tablet)
+              // +reset-columns
+              +span-columns($tablet)
+              +remove-nth-omega(2n)
+            +at-breakpoint($desktop)
+              +span-columns(12, $desktop)
+              // +nth-omega(2n)
+          .ce_gallery + .ce_text
+            +at-breakpoint($tablet)
+              // +reset-columns
+              +span-columns(8, $tablet)
+          .ce_text:nth-child(1)
+            +at-breakpoint($tablet)
+              // +reset-columns
+              +span-columns($tablet)
+              // +remove-nth-omega(2n)
+              // +isolate-grid($tablet)
+            +at-breakpoint($desktop)
+              +span-columns(12, $desktop)
+              // +remove-nth-omega(2n)
+              +isolate-grid(12)
+          .ce_text:nth-child(1) + .ce_mediaelement,
+          .ce_text:nth-child(1) + .ce_gallery
+            +at-breakpoint($tablet)
+              // +reset-columns
+              +span-columns($tablet)
+              // +remove-nth-omega(2n)
+              +isolate-grid($tablet)
+            +at-breakpoint($desktop)
+              +span-columns(12, $desktop)
+              +isolate-grid(12)
+              +omega
+
+  &.drei-spalten
+    #container
+      #main
+        .mod_article
+          .ce_text,
+          .ce_form,
+          .ce_table,
+          .ce_gallery,
+          .ce_mediaelement
+            +at-breakpoint($tablet)
+              &:nth-child(3n+1), &:nth-child(3n+2)
+                +prefix(1)
+              &:nth-child(3n+3)
+                +suffix(1)
+              +span-columns(4, $tablet)
+              +nth-omega(3n)
+              +isolate-grid(4)
+            +at-breakpoint($desktop)
+              &:nth-child(3n+1), &:nth-child(3n+2)
+                +prefix(0)
+              &:nth-child(3n+3)
+                +suffix(0)
+              +span-columns(8, $desktop)
+              +nth-omega(3n)
+              +isolate-grid(8)
+          .ce_gallery:nth-child(1),
+          .ce_gallery:nth-child(1) + .ce_text
+            +at-breakpoint($tablet)
+              &:nth-child(1), &:nth-child(2)
+                +prefix(0)
+                +suffix(0)
+              +span-columns(7, $tablet)
+              +remove-nth-omega(3n)
+              +nth-omega(2n)
+              +isolate-grid(7)
+            +at-breakpoint($desktop)
+              +span-columns(12, $desktop)
+              +remove-nth-omega(3n)
+              +nth-omega(2n)
+              +isolate-grid(12)
+
+  #container
+    #main
+      .ce_gallery
+        padding-bottom: 5em
+        .swiper-container, .swiper-slide
+          width: 100%
+          height: 600px
+        .swiper-container
+          margin: 0 auto
+          .swiper-slide
+            text-align: center
+            img
+              max-width: 100%
+        .swiper-pagination
+          display: table
+          margin: 0 auto
+          .swiper-pagination-switch
+            display: inline-block
+            width: 17px
+            height: 17px
+            background: transparent url("/tl_files/mbuw/theme/bilder/Iris.png") center center no-repeat
+            margin-right: 0.6em
+            &.swiper-active-switch
+              background-image: url("/tl_files/mbuw/theme/bilder/Pupille.png")
+
+      .ce_text table,
+      .ce_table table
+        tr
+          +transition-property(background-color)
+          +transition-duration(0.25s)
+          +transition-timing-function(linear)
+        tr:hover
+          background-color: $hellgrau
 

@@ -1,5 +1,10 @@
 /*
+ *=require jquery.ui.all
  *=require main
  *=require bootstrap_and_overrides
  *=require jasny-bootstrap.min
+ *=require _contao
+ *=require Swiper/idangerous.swiper.css
+ *=require mediaelement_rails
+ *=require mediaelement_rails/mejs-skins
  */

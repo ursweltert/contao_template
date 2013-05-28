@@ -23,13 +23,18 @@ group :assets do
   gem 'susy'
 
   gem "less-rails"
-  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+  # gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+  gem 'twitter-bootstrap-rails',
+    :path => 'vendor/twitter-bootstrap-rails/'
   gem 'jasny-bootstrap-extension-rails', '0.0.2',
     :path => 'vendor/jasny-bootstrap-extension-rails/'
+  gem 'mediaelement_rails',
+    :path => 'vendor/mediaelement_rails/'
 end
 
 gem 'jquery-rails'
 gem 'jquery-migrate-rails'
+gem 'jquery-ui-rails'
 
 group :development do
   gem 'foreman'

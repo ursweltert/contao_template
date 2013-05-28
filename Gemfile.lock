@@ -1,17 +1,23 @@
-GIT
-  remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
-  revision: 404d7feca2596850ba2710e7c755773ba1e8eaa0
+PATH
+  remote: vendor/jasny-bootstrap-extension-rails/
+  specs:
+    jasny-bootstrap-extension-rails (0.0.2)
+
+PATH
+  remote: vendor/mediaelement_rails/
+  specs:
+    mediaelement_rails (0.5.1)
+      jquery-rails (>= 1.0)
+      railties (>= 3.1)
+
+PATH
+  remote: vendor/twitter-bootstrap-rails/
   specs:
     twitter-bootstrap-rails (2.2.6)
       actionpack (>= 3.1)
       execjs
       rails (>= 3.1)
       railties (>= 3.1)
-
-PATH
-  remote: vendor/jasny-bootstrap-extension-rails/
-  specs:
-    jasny-bootstrap-extension-rails (0.0.2)
 
 GEM
   remote: https://rubygems.org/
@@ -138,6 +144,9 @@ GEM
     jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (4.0.3)
+      jquery-rails
+      railties (>= 3.1.0)
     json (1.7.7)
     less (2.3.2)
       commonjs (~> 0.2.6)
@@ -245,7 +254,9 @@ DEPENDENCIES
   jasny-bootstrap-extension-rails (= 0.0.2)!
   jquery-migrate-rails
   jquery-rails
+  jquery-ui-rails
   less-rails
+  mediaelement_rails!
   oily_png
   pry
   pry-doc
