@@ -10,3 +10,6 @@
 [submodule "contao/core/system/modules/template-override"]
 	path = contao/core/system/modules/template-override
 	url = https://github.com/codefog/contao-template_override.git
+[submodule "lib/contao/plugins/firephp-core"]
+	path = lib/contao/plugins/firephp-core
+	url = https://github.com/firephp/firephp-core.git
