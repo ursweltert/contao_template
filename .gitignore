@@ -15,6 +15,9 @@
 /tmp
 /.jhw-cache/
 
+# IDE/Editor Dateien ignorieren
+__init__.py
+
 # Contao
 contao/tl_files/inhalte/
 contao/*/system/runonce.php
