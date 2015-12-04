@@ -13,7 +13,7 @@ group :assets do
   
   gem 'libv8', '3.11.8.17'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', :platforms => :ruby
+  gem 'therubyracer', '0.11.4', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
   gem 'oily_png', platforms: :mri
