@@ -32,7 +32,7 @@ group :development do
   gem 'pry'
   gem 'pry-doc'
 
-  gem 'contao'
+  gem 'contao', '0.6.7'
   gem 'capistrano-contao'
   gem 'capistrano-exts', '>=1.13.2', :require => false
 end
